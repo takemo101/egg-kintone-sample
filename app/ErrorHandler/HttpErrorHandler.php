@@ -16,8 +16,14 @@ final class HttpErrorHandler extends ErrorHandler
      */
     protected function handleHttpException(HttpException $error): Response
     {
-        return latte('error/error.latte.html', [
-            'error' => $error,
-        ])->setStatusCode($error->getStatusCode());
+        return new Response(
+            latte(
+                'error/error.latte.html',
+                [
+                    'error' => $error,
+                ],
+            ),
+            $error->getStatusCode(),
+        );
     }
 }

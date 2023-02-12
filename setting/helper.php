@@ -7,14 +7,14 @@ use Takemo101\Egg\Support\StaticContainer;
 
 if (!function_exists('latte')) {
     /**
-     * Latteでテンプレートをレンダリングしてレスポンスを返す
+     * Latteでテンプレートをレンダリングして文字列を返す
      *
      * @param string $path
      * @param object|mixed[] $params
      * @param string|null $block
-     * @return Response
+     * @return string
      */
-    function latte(string $path, object|array $params = [], ?string $block = null): Response
+    function latte(string $path, object|array $params = [], ?string $block = null): string
     {
         /** @var Application */
         $app = StaticContainer::get('app');
@@ -22,11 +22,6 @@ if (!function_exists('latte')) {
         /** @var Latte */
         $latte = $app->container->make(Latte::class);
 
-        /** @var Response */
-        $response = $app->container->make('response');
-
-        return $response->setContent(
-            $latte->renderToString($path, $params, $block),
-        );
+        return $latte->renderToString($path, $params, $block);
     }
 }

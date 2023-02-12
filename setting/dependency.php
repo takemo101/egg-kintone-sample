@@ -2,6 +2,8 @@
 
 use App\Support\Latte\LatteFileLoader;
 use App\Support\Path\AppPath;
+use CybozuHttp\Api\KintoneApi;
+use CybozuHttp\Client;
 use Takemo101\Egg\Support\Injector\ContainerContract;
 use Latte\Engine as Latte;
 use Takemo101\Egg\Kernel\ApplicationPath;
@@ -44,6 +46,18 @@ return function (ContainerContract $c) {
                 lattePath: $appPath->basePath(
                     config('setting.latte-path', 'resource/latte'),
                 ),
+            );
+        },
+
+        // KintoneApi
+        KintoneApi::class => function () {
+            return new KintoneApi(
+                new Client([
+                    'domain' => 'cybozu.com',
+                    'subdomain' => config('setting.kintone.subdomain', ''),
+                    'use_api_token' => true,
+                    'token' => config('setting.kintone.api-token', ''),
+                ])
             );
         },
     ];

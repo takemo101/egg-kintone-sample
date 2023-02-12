@@ -1,0 +1,30 @@
+{layout '@layout/layout.latte.html'}
+
+{block content}
+	<h1 n:block="title">{$タイトル['value']}</h1>
+
+	<p class="important">
+		<p>
+            <a href="{route('index')}">Index</a>
+        </p>
+	</p>
+
+    <div>
+        {$内容['value']|noescape}
+    </div>
+
+    <p>
+        <small>
+            {$作成日時['value']}
+        </small>
+    </p>
+
+    <p>
+        <form action="{route('remove', ['id' => $レコード番号['value']])}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="_csrf" value="{$csrfToken}">
+            <p>
+                <input type="submit" value="Remove">
+            </p>
+        </form>
+{/block}

@@ -1,0 +1,19 @@
+{layout '@layout/layout.latte.html'}
+
+{block content}
+	<h1 n:block="title">Index</h1>
+
+	<p class="important">
+		<p>
+            <a href="{route('create')}">Create</a>
+        </p>
+	</p>
+
+    <ul>
+        <li n:foreach="$records as $record">
+            <a href="{route('show', ['id' => $record['レコード番号']['value']])}">
+                {$record['タイトル']['value']}
+            </a>
+        </li>
+    </ul>
+{/block}

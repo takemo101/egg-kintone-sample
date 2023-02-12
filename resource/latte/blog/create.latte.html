@@ -1,0 +1,33 @@
+{layout '@layout/layout.latte.html'}
+
+{block content}
+	<h1 n:block="title">Create</h1>
+
+	<p class="important">
+		<p>
+            <a href="{route('index')}">Index</a>
+        </p>
+	</p>
+
+    <div>
+        <form action="{route('store')}" method="post">
+            <input type="hidden" name="_csrf" value="{$csrfToken}">
+            <p>
+                <label>パスワード</label>
+                <input type="password" name="pass">
+            </p>
+            <p>
+                <label>タイトル</label>
+                <input type="text" name="title">
+            </p>
+            <p>
+                <label>内容（HTML）</label>
+                <textarea name="body"></textarea>
+            </p>
+            <p>
+                <input type="submit" value="Create">
+            </p>
+        </form>
+    </div>
+
+{/block}

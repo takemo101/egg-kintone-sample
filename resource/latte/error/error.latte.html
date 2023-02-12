@@ -5,12 +5,10 @@
 
 	<p class="important">
 		<p>
-            <a href="index">IndexPage</a>
-        </p>
-        <p>
-            <a href="other/index">OtherPage</a>
+            <a href="{route('index')}">Index</a>
         </p>
 	</p>
+    <strong>{$error->getMessage()}</strong>
 {/block}
 
 {block head}
